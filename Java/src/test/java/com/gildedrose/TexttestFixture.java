@@ -1,4 +1,7 @@
-package com.gildedrose;
+package src.test.java.com.gildedrose;
+
+import src.main.java.com.gildedrose.GildedRose;
+import src.main.java.com.gildedrose.Item;
 
 public class TexttestFixture {
     public static void main(String[] args) {

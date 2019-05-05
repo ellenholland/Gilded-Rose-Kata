@@ -1,4 +1,4 @@
-package com.gildedrose;
+package src.main.java.com.gildedrose;
 
 public class Item {
 
