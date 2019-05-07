@@ -4,13 +4,11 @@ public class Item {
 
     public String name;
 
-    public String category;
-
     public int sellIn;
 
     public int quality;
 
-    public Item(String name, String category, int sellIn, int quality) {
+    public Item(String name, int sellIn, int quality) {
         this.name = name;
         this.sellIn = sellIn;
         this.quality = quality;
@@ -18,7 +16,7 @@ public class Item {
 
    @Override
    public String toString() {
-        return this.name + ", " + this.category + ", " + this.sellIn + ", " + this.quality;
+        return this.name + ", " + this.sellIn + ", " + this.quality;
     }
 
     /**Getters & Setters**/
@@ -27,12 +25,6 @@ public class Item {
     }
     public void setName(String name){
         this.name = name;
-    }
-    public String getCategory(){
-        return category;
-    }
-    public void setCategory(String category){
-        this.category = category;
     }
     public int getSellIn(){
         return sellIn;

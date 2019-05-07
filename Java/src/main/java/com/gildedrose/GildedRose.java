@@ -40,9 +40,10 @@ public class GildedRose {
             }
 
             // SELLIN
-            if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
-                item.sellIn = item.sellIn - 1;
-            }
+//            /*if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
+//                item.sellIn = item.sellIn - 1;
+//            }*/
+            updateSellIn(item);
 
             // QUALITY
             if (item.sellIn < 0) {
@@ -62,6 +63,11 @@ public class GildedRose {
                     }
                 }
             }
+        }
+    }
+    public void updateSellIn(Item item){
+        if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
+            item.setSellIn(item.getSellIn()-1);
         }
     }
 }
