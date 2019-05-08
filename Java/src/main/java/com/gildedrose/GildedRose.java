@@ -23,22 +23,29 @@ public class GildedRose {
 
     public void updateQuality() {
         for(Item item:items) {
-            if(item.name.equals("Aged Brie")){
-                updateAGED(item);
+            String itemCategory = category.get(item.getName());
+            if(category.containsKey(item.getName())){
+                categoryUpdate(itemCategory, item);
             }
-            if(item.name.equals("Sulfuras, Hand of Ragnaros")){
-                updateLEGENDARY(item);
-            }
-            if(item.name.equals("Backstage passes to a TAFKAL80ETC concert")){
-                updatePASSES(item);
-            }
-            if(item.name.equals("Conjured Mana Cake")){
-                updateCONJURED(item);
-            }
-            if(item.name.equals("Elixir of the Mongoose")){
+            else{
                 updateOTHER(item);
             }
             updateSellIn(item);
+        }
+    }
+
+    public void categoryUpdate(String category, Item item){
+        if(category.equals("AGED")){
+            updateAGED(item);
+        }
+        if(category.equals("LEGENDARY")){
+            updateLEGENDARY(item);
+        }
+        if(category.equals("PASSES")){
+            updatePASSES(item);
+        }
+        if(category.equals("CONJURED")){
+            updateCONJURED(item);
         }
     }
 
