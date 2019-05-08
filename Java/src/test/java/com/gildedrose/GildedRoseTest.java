@@ -11,8 +11,18 @@ public class GildedRoseTest {
     /*QUALITY*/
 
     @Test
+    public void normalQualityTest() {
+        Item[] items = new Item[] { new Item("Elixir of the Mongoose", 5, 10) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+
+        assertEquals(4, app.items[0].getSellIn());
+        assertEquals(9, app.items[0].getQuality());
+    }
+
+    @Test
     public void qualityDegradesTwiceAsFastAfterSellInTest() {
-        Item[] items = new Item[] { new Item("Elixer of the Mongoose", -1, 10) };
+        Item[] items = new Item[] { new Item("Elixir of the Mongoose", -1, 10) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
 
@@ -22,7 +32,7 @@ public class GildedRoseTest {
 
     @Test (expected = AssertionError.class)
     public void qualityIsNeverNegativeTest() {
-        Item[] items = new Item[] { new Item("Elixer of the Mongoose", -5, 0) };
+        Item[] items = new Item[] { new Item("Elixir of the Mongoose", -5, 0) };
 
         GildedRose app = new GildedRose(items);
         app.updateQuality();

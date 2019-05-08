@@ -1,11 +1,24 @@
 package src.main.java.com.gildedrose;
 
+import java.util.HashMap;
+
 public class GildedRose {
 
     public Item[] items;
 
     public GildedRose(Item[] items) {
         this.items = items;
+        initCategoryMap();
+    }
+
+    // Categories
+    HashMap<String, String> category = new HashMap<String, String>();
+
+    public void initCategoryMap() {
+        category.put("Aged Brie", "AGED");
+        category.put("Sulfuras, Hand of Ragnaros", "LEGENDARY");
+        category.put("Backstage passes to a TAFKAL80ETC concert", "PASSES");
+        category.put("Conjured Mana Cake", "CONJURED");
     }
 
     public void updateQuality() {
@@ -22,10 +35,11 @@ public class GildedRose {
             if(item.name.equals("Conjured Mana Cake")){
                 updateCONJURED(item);
             }
+            if(item.name.equals("Elixir of the Mongoose")){
+                updateOTHER(item);
+            }
             updateSellIn(item);
         }
-        // if quality is negative, make 0.
-        // if quality is more than 50, unless legendary
     }
 
     public void updateSellIn(Item item){
@@ -41,12 +55,14 @@ public class GildedRose {
         return item.getQuality();
     }
 
+    /* Category Methods*/
+
     public void updateAGED(Item item){
         // quality goes up when sellIn decreases
         item.setQuality(increaseQuality(item));
     }
     public void updateLEGENDARY(Item item){
-        // Quality = 80,
+        // Quality = 80
         item.setQuality(80);
     }
     public void updatePASSES(Item item){
@@ -70,7 +86,13 @@ public class GildedRose {
         // degrades in quality twice as fast
         item.setQuality(item.getQuality()-2);
     }
-
-    // other:
-    // once sell by date has passed quality degrades twice as fast
+    public void updateOTHER(Item item){
+        // once sell by date has passed quality degrades twice as fast
+        if(item.getSellIn() < 0){
+            item.setQuality(item.getQuality()-2);
+        }
+        else{
+            item.setQuality(item.getQuality()-1);
+        }
+    }
 }
