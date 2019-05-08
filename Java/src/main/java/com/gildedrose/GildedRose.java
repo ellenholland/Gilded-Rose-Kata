@@ -5,14 +5,13 @@ import java.util.HashMap;
 public class GildedRose {
 
     public Item[] items;
+    // Categories
+    HashMap<String, String> category = new HashMap<String, String>();
 
     public GildedRose(Item[] items) {
         this.items = items;
         initCategoryMap();
     }
-
-    // Categories
-    HashMap<String, String> category = new HashMap<String, String>();
 
     public void initCategoryMap() {
         category.put("Aged Brie", "AGED");
@@ -26,11 +25,12 @@ public class GildedRose {
             String itemCategory = category.get(item.getName());
             if(category.containsKey(item.getName())){
                 categoryUpdate(itemCategory, item);
+                updateSellIn(itemCategory, item);
             }
             else{
                 updateOTHER(item);
+                updateSellIn("OTHER", item);
             }
-            updateSellIn(item);
         }
     }
 
@@ -38,19 +38,19 @@ public class GildedRose {
         if(category.equals("AGED")){
             updateAGED(item);
         }
-        if(category.equals("LEGENDARY")){
+        else if(category.equals("LEGENDARY")){
             updateLEGENDARY(item);
         }
-        if(category.equals("PASSES")){
+        else if(category.equals("PASSES")){
             updatePASSES(item);
         }
-        if(category.equals("CONJURED")){
+        else if(category.equals("CONJURED")){
             updateCONJURED(item);
         }
     }
 
-    public void updateSellIn(Item item){
-        if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
+    public void updateSellIn(String category, Item item){
+        if (!category.equals("LEGENDARY")) {
             item.setSellIn(item.getSellIn()-1);
         }
     }

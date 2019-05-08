@@ -21,6 +21,16 @@ public class GildedRoseTest {
     }
 
     @Test
+    public void qualityIsNeverMoreThanFiftey() {
+        Item[] items = new Item[] { new Item("Aged Brie", 5, 50) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+
+        assertEquals(4, app.items[0].getSellIn());
+        assertEquals(50, app.items[0].getQuality());
+    }
+
+    @Test
     public void qualityDegradesTwiceAsFastAfterSellInTest() {
         Item[] items = new Item[] { new Item("Elixir of the Mongoose", -1, 10) };
         GildedRose app = new GildedRose(items);
